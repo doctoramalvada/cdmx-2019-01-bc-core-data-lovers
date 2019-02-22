@@ -41,7 +41,15 @@ window.onload = function cargar(){
   filters.classList.remove('ocultar');
 }
 //acceder a la data de cada pais
-const data = window.WORLDBANK;
+// const data = window.WORLDBANK;
+
+let data = {};
+fetch('http://127.0.0.1:5500/cdmx-2019-01-bc-core-data-lovers/src/data/worldbank/worldbank.json')
+.then(res => res.json())
+.then(load => {
+  data = load;
+  console.log(load)
+})
 
 // section donde esta la informacion y el select
 const indicator = document.getElementById("information-filter-inner");
@@ -74,6 +82,7 @@ listQuestion.addEventListener("change", () => {
   //console.log(listQuestion.selectedIndex)
   let countrySelect = listQuestion.value;
   const resultado = window.WorldBank.filterCountry(data, country,countrySelect)//Datos de data.js
+  
   var years = []; // para almacenar los años
   var dataPerYear = []; // para almacenar el dato por cada año
   for (let resultYear in resultado) { //declaramos una variable y el obejto de donse encuentra lo que vamos a filtrar
