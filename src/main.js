@@ -44,11 +44,12 @@ window.onload = function cargar(){
 // const data = window.WORLDBANK;
 
 let data = {};
+console.log(data)
 fetch('http://127.0.0.1:5500/cdmx-2019-01-bc-core-data-lovers/src/data/worldbank/worldbank.json')
 .then(res => res.json())
 .then(load => {
   data = load;
-  console.log(load)
+  //console.log(data)
 })
 
 // section donde esta la informacion y el select
